@@ -187,6 +187,7 @@ while True:
           # the logic here is a bit convoluted because we are allowing generation past 512 tokens
           # this is done by sliding the window over (past 512 tokens) and continuing prediction
           # I'm sure this can be simplified (TODO)
+          print('The current token is: ',token, 'The text length is: ', len(text))
           if token <= seq_length:
             prompt_logits = predict_fn({'input_1':tokens_generated[:, :seq_length]})['tied_embedding_softmax'].squeeze() / (temperature if temperature>0 else 1.)
             _token = token if token < seq_length else -1
