@@ -169,7 +169,7 @@ topk = args.topk
 while True:
     prompt = raw_input('ENTER PROMPT: ') if not use_py3 else input('ENTER PROMPT: ')
     prompt = prompt.split('\\n') # split on newlines if provided
-
+    print('Hi Jack, let us play with it')
     # tokenize provided prompt
     split_prompt = ' \n '.join(bpe.apply(prompt))
     split_prompt = split_prompt.split(' ')
