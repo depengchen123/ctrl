@@ -19,6 +19,8 @@ from control_codes import CONTROL_CODES
 
 use_py3 = platform.python_version()[0] == '3'
 
+print("Hello jack 1...")
+
 parser = argparse.ArgumentParser(description='TensorFlow code for generating from CTRL')
 parser.add_argument('--model_dir', type=str, required=True,
                                         help='location of model checkpoint')
@@ -136,6 +138,7 @@ optimizer = tf.contrib.tpu.CrossShardOptimizer(
 model.compile(optimizer=optimizer, loss=loss)
 print(model.summary())
 
+print("Hello jack 2...")
 
 # IMPORTANT
 # this is where the saved model is presented to the code
@@ -166,10 +169,14 @@ nucleusprob = args.nucleus
 penalty = args.penalty
 topk = args.topk
 
+print("Hello jack 3...")
+
 while True:
+    print("Hello jack 4...")
+    
     prompt = raw_input('ENTER PROMPT: ') if not use_py3 else input('ENTER PROMPT: ')
     prompt = prompt.split('\\n') # split on newlines if provided
-    print('Hi Jack, let us play with it')
+    
     # tokenize provided prompt
     split_prompt = ' \n '.join(bpe.apply(prompt))
     split_prompt = split_prompt.split(' ')
@@ -181,13 +188,18 @@ while True:
     # pad with 0s and create a mini-batch of 2 (arbitrary, for ease of code)
     padded_text = text + [0] * (args.generate_num - len(text))
     tokens_generated = np.tile(padded_text, (1,1))
+    
+    print("Hello jack 5...")
+    
     try:
         for token in range(len(text)-1, args.generate_num-1):
           # get the logits from the prediction function
           # the logic here is a bit convoluted because we are allowing generation past 512 tokens
           # this is done by sliding the window over (past 512 tokens) and continuing prediction
           # I'm sure this can be simplified (TODO)
-          print('The current token is: ',token, 'The text length is: ', len(text))
+          
+          print("Hello jack 6...")
+          
           if token <= seq_length:
             prompt_logits = predict_fn({'input_1':tokens_generated[:, :seq_length]})['tied_embedding_softmax'].squeeze() / (temperature if temperature>0 else 1.)
             _token = token if token < seq_length else -1
@@ -286,8 +298,12 @@ while True:
             print('---------------------------------------')
             print(tokens_generated_so_far)
             print()
+            
+        print("Hello jack 7...")
+        
         print('---------------------------------------')            
         print(tokens_generated_so_far)
+        print("Hello jack 8...")
         print()
 
     except KeyboardInterrupt: #Exception as e:
