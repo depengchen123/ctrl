@@ -296,12 +296,15 @@ while True:
 
           if not args.print_once:
             print('---------------------------------------')
+            print("hello jack 9...")
             print(tokens_generated_so_far)
+            print("Hello jack 10...")
             print()
             
         print("Hello jack 7...")
         
-        print('---------------------------------------')            
+        print('---------------------------------------')  
+        print("hello jack 11...")
         print(tokens_generated_so_far)
         print("Hello jack 8...")
         print()
