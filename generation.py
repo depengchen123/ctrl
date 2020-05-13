@@ -21,7 +21,7 @@ use_py3 = platform.python_version()[0] == '3'
 
 print("Hello jack 1...")
 
-#parser = argparse.ArgumentParser(description='TensorFlow code for generating from CTRL')
+parser = argparse.ArgumentParser(description='TensorFlow code for generating from CTRL')
 parser.add_argument('--model_dir', type=str, required=True,
                                         help='location of model checkpoint')
 parser.add_argument('--seed', type=int, default=1337,
